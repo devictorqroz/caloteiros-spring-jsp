@@ -28,8 +28,8 @@ public class CaloteiroService {
         caloteiroRepository.create(caloteiro);
     }
 
-    public void delete(Long id) {
-        caloteiroRepository.delete(id);
+    public void deleteById(Long id) {
+        caloteiroRepository.deleteById(id);
     }
 
     public void update(Caloteiro caloteiro) {

@@ -43,7 +43,7 @@ public class CaloteiroRepository {
             .list();
     }
 
-    public void delete(Long id) {
+    public void deleteById(Long id) {
         jdbcClient
                 .sql("DELETE FROM caloteiro WHERE id = :id")
                 .param("id", id)
