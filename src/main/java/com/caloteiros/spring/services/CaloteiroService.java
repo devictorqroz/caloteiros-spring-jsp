@@ -2,6 +2,7 @@ package com.caloteiros.spring.services;
 
 import com.caloteiros.spring.models.Caloteiro;
 import com.caloteiros.spring.repositories.CaloteiroRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -10,11 +11,9 @@ import java.util.Optional;
 @Service
 public class CaloteiroService {
 
-    private final CaloteiroRepository caloteiroRepository;
+    @Autowired
+    CaloteiroRepository caloteiroRepository;
 
-    public CaloteiroService(CaloteiroRepository caloteiroRepository) {
-        this.caloteiroRepository = caloteiroRepository;
-    }
 
     public List<Caloteiro> findAll() {
         return caloteiroRepository.findAll();

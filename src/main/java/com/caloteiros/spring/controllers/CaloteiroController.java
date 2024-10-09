@@ -2,19 +2,19 @@ package com.caloteiros.spring.controllers;
 
 import com.caloteiros.spring.models.Caloteiro;
 import com.caloteiros.spring.services.CaloteiroService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
+
 
 import java.util.List;
 
-@RestController
-@RequestMapping("/caloteiros")
+@Controller
 public class CaloteiroController {
 
-    private final CaloteiroService caloteiroService;
-
-    public CaloteiroController(CaloteiroService caloteiroService) {
-        this.caloteiroService = caloteiroService;
-    }
+    @Autowired
+    CaloteiroService caloteiroService;
 
     @GetMapping("/{id}")
     public Caloteiro findById(@PathVariable Long id) {
@@ -25,9 +25,12 @@ public class CaloteiroController {
         return caloteiro.get();
     }
 
-    @GetMapping
-    public List<Caloteiro> findAll() {
-        return caloteiroService.findAll();
+    @GetMapping("/list-caloteiros")
+    public ModelAndView findAll(ModelAndView model) {
+        List<Caloteiro> caloteiros = caloteiroService.findAll();
+        model.setViewName("list-caloteiros");
+        model.addObject("caloteiros", caloteiros);
+        return model;
     }
 
     @PostMapping

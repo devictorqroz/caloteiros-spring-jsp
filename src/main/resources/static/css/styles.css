@@ -1,0 +1,30 @@
+/* Main System Template */
+header {
+    background-color: #333; 
+    color: #fff; 
+    padding: 10px;
+    text-align: center; 
+    position: fixed; 
+    width: 100%; 
+    top: 0;
+    left: 0;
+    z-index: 1000; 
+}
+
+main {
+    margin-top: 50px;
+    margin-bottom: 50px; 
+    padding: 20px;
+}
+
+footer {
+    background-color: #333;
+    color: #fff; 
+    padding: 10px; 
+    text-align: center; 
+    position: fixed; 
+    width: 100%; 
+    bottom: 0; 
+    left: 0;
+    z-index: 1000;
+}
