@@ -53,8 +53,7 @@
 						<c:choose>
 							<c:when test="${not empty caloteiro.debtDate}">
 								<td>
-									<fmt:formatDate value="${caloteiro.debtDate}"
-										pattern="dd/MM/yyyy" />
+									 ${fn:formatLocalDate(caloteiro.debtDate, 'dd/MM/yyyy')}
 								</td>
 							</c:when>
 							<c:otherwise>
