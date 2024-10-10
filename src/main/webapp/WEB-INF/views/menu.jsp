@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ include file="includes.jsp" %>
 <html>
 	<head>
 		<meta charset="UTF-8">
@@ -17,12 +17,12 @@
 			
 			<ol>
 				<li>
-					<a href='<c:url value="/include-caloteiro.jsp" />' >
+					<a href='<c:url value="/new" />' >
 						Adicionar caloteiro
 					</a>
 				</li>
 				<li>
-					<a href='<c:url value="/system?logica=ListCaloteiro" />' >
+					<a href='<c:url value="/caloteiros" />' >
 						Listar caloteiros
 					</a>
 				</li>

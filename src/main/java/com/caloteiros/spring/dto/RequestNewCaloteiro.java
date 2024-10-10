@@ -1,37 +1,17 @@
-package com.caloteiros.spring.models;
+package com.caloteiros.spring.dto;
 
-import jakarta.validation.constraints.Email;
-import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Size;
+import com.caloteiros.spring.models.Caloteiro;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
-public class Caloteiro {
+public class RequestNewCaloteiro {
 
-    private Long id;
-
-    @NotNull(message = "O nome não pode ser nulo")
-    @Size(min = 2, max = 100, message = "O nome deve ter entre 2 e 100 caracteres")
     private String name;
-
-    @Email(message = "Email deve ser válido")
     private String email;
-
-    @NotNull(message = "A dívida não pode ser nula")
     private BigDecimal debt;
-
-    @NotNull(message = "A data da dívida não pode ser nula")
     private LocalDate debtDate;
 
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
 
     public String getName() {
         return name;
@@ -65,11 +45,20 @@ public class Caloteiro {
         this.debtDate = debtDate;
     }
 
+
+    public Caloteiro toCaloteiro() {
+        Caloteiro caloteiro = new Caloteiro();
+        caloteiro.setName(this.name);
+        caloteiro.setEmail(this.email);
+        caloteiro.setDebt(this.debt);
+        caloteiro.setDebtDate(this.debtDate);
+        return caloteiro;
+    }
+
     @Override
     public String toString() {
-        return "Caloteiro{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
+        return "RequestNewCaloteiro{" +
+                "name='" + name + '\'' +
                 ", email='" + email + '\'' +
                 ", debt=" + debt +
                 ", debtDate=" + debtDate +

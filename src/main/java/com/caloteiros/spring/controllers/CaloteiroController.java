@@ -1,5 +1,6 @@
 package com.caloteiros.spring.controllers;
 
+import com.caloteiros.spring.dto.RequestNewCaloteiro;
 import com.caloteiros.spring.models.Caloteiro;
 import com.caloteiros.spring.services.CaloteiroService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,17 +26,27 @@ public class CaloteiroController {
         return caloteiro.get();
     }
 
-    @GetMapping("/list-caloteiros")
-    public ModelAndView findAll(ModelAndView model) {
+
+    @GetMapping("/caloteiros")
+    public ModelAndView findAll() {
         List<Caloteiro> caloteiros = caloteiroService.findAll();
-        model.setViewName("list-caloteiros");
+        ModelAndView model = new ModelAndView("list-caloteiros");
         model.addObject("caloteiros", caloteiros);
         return model;
     }
 
-    @PostMapping
-    public void create(@RequestBody Caloteiro caloteiro) {
-        caloteiroService.create(caloteiro);
+    @GetMapping("/new")
+    public ModelAndView newCaloteiroForm() {
+        ModelAndView model = new ModelAndView("new-caloteiro");
+        return model;
+    }
+
+    @PostMapping("/caloteiros")
+    public String create(RequestNewCaloteiro request) {
+        Caloteiro caloteiro = request.toCaloteiro();
+        this.caloteiroService.create(caloteiro);
+
+        return "redirect:/caloteiros";
     }
 
     @DeleteMapping("/{id}")

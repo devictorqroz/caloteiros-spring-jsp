@@ -5,7 +5,7 @@
 	<head>
 		<meta charset="UTF-8">
 		<title>Lista de Caloteiros</title>
-		<link rel="stylesheet" type="text/css" href="css/list-caloteiros.css">
+		<link rel="stylesheet" type="text/css" href="css/caloteiros/list-caloteiros.css">
 		<script src="javascript/jquery-3.7.1.min.js" defer></script>
     	<script src="javascript/confirmation.js" defer></script>
 	</head>

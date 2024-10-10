@@ -1,6 +1,5 @@
 package com.caloteiros.spring.utils;
 
-import java.text.DateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
