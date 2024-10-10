@@ -17,7 +17,7 @@
 			
 			<ol>
 				<li>
-					<a href='<c:url value="/new" />' >
+					<a href='<c:url value="/caloteiros/new" />' >
 						Adicionar caloteiro
 					</a>
 				</li>

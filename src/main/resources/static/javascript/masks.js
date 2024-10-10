@@ -4,11 +4,11 @@ $(document).ready(function() {
 	$('#labelDate').inputmask("99/99/9999");
 	
 	
-	$('#formInclude').validate({
+	$('#').validate({
 		rules: {
 			name: {
 				required: true,
-				maxlength: 45
+				maxlength: 50
 			},
 			email: {
 				required: true,
@@ -36,11 +36,11 @@ $(document).ready(function() {
 	});
 	
 	
-	$('#formUpdate').validate({
+	$('#').validate({
 		rules: {
 			name: {
 				required: true,
-				maxlength: 45
+				maxlength: 50
 			},
 			email: {
 				required: true,

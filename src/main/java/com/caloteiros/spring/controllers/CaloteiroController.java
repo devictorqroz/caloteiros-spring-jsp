@@ -3,8 +3,10 @@ package com.caloteiros.spring.controllers;
 import com.caloteiros.spring.dto.RequestNewCaloteiro;
 import com.caloteiros.spring.models.Caloteiro;
 import com.caloteiros.spring.services.CaloteiroService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -35,18 +37,23 @@ public class CaloteiroController {
         return model;
     }
 
-    @GetMapping("/new")
+    @GetMapping("caloteiros/new")
     public ModelAndView newCaloteiroForm() {
-        ModelAndView model = new ModelAndView("new-caloteiro");
+        ModelAndView model = new ModelAndView("caloteiros/new-caloteiro");
         return model;
     }
 
     @PostMapping("/caloteiros")
-    public String create(RequestNewCaloteiro request) {
-        Caloteiro caloteiro = request.toCaloteiro();
-        this.caloteiroService.create(caloteiro);
+    public ModelAndView create(@Valid RequestNewCaloteiro request, BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) {
+            ModelAndView model = new ModelAndView("caloteiros/new-caloteiro");
+            return model;
+        } else {
+            Caloteiro caloteiro = request.toCaloteiro();
+            this.caloteiroService.create(caloteiro);
 
-        return "redirect:/caloteiros";
+            return new ModelAndView("redirect:/caloteiros");
+        }
     }
 
     @DeleteMapping("/{id}")

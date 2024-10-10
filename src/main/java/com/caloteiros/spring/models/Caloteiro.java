@@ -1,8 +1,6 @@
 package com.caloteiros.spring.models;
 
-import jakarta.validation.constraints.Email;
-import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Size;
+import jakarta.validation.constraints.*;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
@@ -11,17 +9,9 @@ public class Caloteiro {
 
     private Long id;
 
-    @NotNull(message = "O nome não pode ser nulo")
-    @Size(min = 2, max = 100, message = "O nome deve ter entre 2 e 100 caracteres")
     private String name;
-
-    @Email(message = "Email deve ser válido")
     private String email;
-
-    @NotNull(message = "A dívida não pode ser nula")
     private BigDecimal debt;
-
-    @NotNull(message = "A data da dívida não pode ser nula")
     private LocalDate debtDate;
 
 

@@ -1,14 +1,23 @@
 package com.caloteiros.spring.dto;
 
 import com.caloteiros.spring.models.Caloteiro;
+import jakarta.validation.constraints.DecimalMin;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
 public class RequestNewCaloteiro {
 
+    @NotBlank
     private String name;
+    @NotBlank
+    @Email
     private String email;
+    @NotNull
+    @DecimalMin("0.0")
     private BigDecimal debt;
     private LocalDate debtDate;
 
