@@ -6,14 +6,17 @@ import com.caloteiros.spring.services.CaloteiroService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 
 import java.util.List;
+import java.util.Optional;
 
 @Controller
+@RequestMapping("/caloteiros")
 public class CaloteiroController {
 
     @Autowired
@@ -28,23 +31,22 @@ public class CaloteiroController {
         return caloteiro.get();
     }
 
-
-    @GetMapping("/caloteiros")
+    @GetMapping
     public ModelAndView findAll() {
         List<Caloteiro> caloteiros = caloteiroService.findAll();
-        ModelAndView model = new ModelAndView("list-caloteiros");
+        ModelAndView model = new ModelAndView("caloteiros/list-caloteiros");
         model.addObject("caloteiros", caloteiros);
         return model;
     }
 
-    @GetMapping("caloteiros/new")
-    public ModelAndView newCaloteiroForm() {
+    @GetMapping("/new")
+    public ModelAndView newCaloteiroForm(RequestNewCaloteiro request) {
         ModelAndView model = new ModelAndView("caloteiros/new-caloteiro");
         return model;
     }
 
-    @PostMapping("/caloteiros")
-    public ModelAndView create(@Valid RequestNewCaloteiro request, BindingResult bindingResult) {
+    @PostMapping
+    public ModelAndView createCaloteiroForm(@Valid RequestNewCaloteiro request, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
             ModelAndView model = new ModelAndView("caloteiros/new-caloteiro");
             return model;
@@ -52,18 +54,47 @@ public class CaloteiroController {
             Caloteiro caloteiro = request.toCaloteiro();
             this.caloteiroService.create(caloteiro);
 
-            return new ModelAndView("redirect:/caloteiros");
+            return new ModelAndView("redirect:/caloteiros/caloteiro-created");
         }
     }
 
     @DeleteMapping("/{id}")
-    public void deleteById(@PathVariable Long id) {
+    public String deleteCaloteiroById(@PathVariable Long id) {
         caloteiroService.deleteById(id);
+        return "redirect:/caloteiros/caloteiro-deleted";
     }
 
-    @PutMapping
-    public void update(@RequestBody Caloteiro caloteiro) {
-        caloteiroService.update(caloteiro);
+    @GetMapping("/{id}/edit")
+    public String updateCaloteiroForm(@PathVariable Long id, Model model) {
+        Optional<Caloteiro> optionalCaloteiro = caloteiroService.findById(id);
+
+        if (optionalCaloteiro.isPresent()) {
+            model.addAttribute("caloteiro", optionalCaloteiro.get());
+        } else {
+            return "redirect:/caloteiros";
+        }
+        return "/caloteiros/update-caloteiro";
+    }
+
+    @PutMapping("/{id}")
+    public String updateCaloteiro(@PathVariable Long id, @ModelAttribute Caloteiro updateCaloteiro) {
+        caloteiroService.update(id, updateCaloteiro);
+        return "redirect:/caloteiros/caloteiro-updated";
+    }
+
+    @GetMapping("/caloteiro-deleted")
+    public ModelAndView caloteiroDeleted() {
+        return new ModelAndView("caloteiros/caloteiro-deleted");
+    }
+
+    @GetMapping("/caloteiro-created")
+    public ModelAndView caloteiroCreated() {
+        return new ModelAndView("caloteiros/caloteiro-created");
+    }
+
+    @GetMapping("/caloteiro-updated")
+    public ModelAndView caloteiroUpdated() {
+        return new ModelAndView("caloteiros/caloteiro-updated");
     }
 
 }

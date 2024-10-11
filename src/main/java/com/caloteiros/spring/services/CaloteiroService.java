@@ -24,15 +24,26 @@ public class CaloteiroService {
     }
 
     public void create(Caloteiro caloteiro) {
-        caloteiroRepository.create(caloteiro);
+        caloteiroRepository.save(caloteiro);
     }
 
     public void deleteById(Long id) {
         caloteiroRepository.deleteById(id);
     }
 
-    public void update(Caloteiro caloteiro) {
-        caloteiroRepository.update(caloteiro);
+    public void update(Long id, Caloteiro updateCaloteiro) {
+        Optional<Caloteiro> optionalCaloteiro = caloteiroRepository.findById(id);
+
+        if (optionalCaloteiro.isPresent()) {
+            Caloteiro caloteiro = optionalCaloteiro.get();
+
+            caloteiro.setName(updateCaloteiro.getName());
+            caloteiro.setEmail(updateCaloteiro.getEmail());
+            caloteiro.setDebt(updateCaloteiro.getDebt());
+            caloteiro.setDebtDate(updateCaloteiro.getDebtDate());
+
+            caloteiroRepository.update(caloteiro);
+        }
     }
 
 }

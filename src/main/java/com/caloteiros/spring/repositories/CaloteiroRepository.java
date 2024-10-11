@@ -16,7 +16,7 @@ public class CaloteiroRepository {
         this.jdbcClient = jdbcClient;
     }
 
-    public void create(Caloteiro caloteiro) {
+    public void save(Caloteiro caloteiro) {
         jdbcClient.sql("""
                 INSERT INTO caloteiro (name, email, debt, debtDate) 
                 VALUES (:name, :email, :debt, :debtDate)
@@ -50,18 +50,18 @@ public class CaloteiroRepository {
                 .update();
     }
 
-    public int update(Caloteiro caloteiro) {
-        return jdbcClient
-                .sql("""
-                        UPDATE caloteiro SET name = :name, email = :email,
-                        debt = :debt, debtDate = :debtDate WHERE id = :id
-                    """)
-                .param("name", caloteiro.getName())
-                .param("email", caloteiro.getEmail())
-                .param("debt", caloteiro.getDebt())
-                .param("debtDate", caloteiro.getDebtDate())
-                .param("id", caloteiro.getId())
-                .update();
+    public void update(Caloteiro caloteiro) {
+        jdbcClient
+            .sql("""
+                UPDATE caloteiro 
+                SET name = :name, email = :email, debt = :debt, debtDate = :debtDate 
+                WHERE id = :id
+            """)
+            .param("name", caloteiro.getName())
+            .param("email", caloteiro.getEmail())
+            .param("debt", caloteiro.getDebt())
+            .param("debtDate", caloteiro.getDebtDate())
+            .param("id", caloteiro.getId())
+            .update();
     }
-
 }

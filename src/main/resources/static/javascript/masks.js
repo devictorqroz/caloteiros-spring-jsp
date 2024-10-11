@@ -4,7 +4,7 @@ $(document).ready(function() {
 	$('#labelDate').inputmask("99/99/9999");
 	
 	
-	$('#').validate({
+	$('#formCreate').validate({
 		rules: {
 			name: {
 				required: true,
@@ -36,7 +36,7 @@ $(document).ready(function() {
 	});
 	
 	
-	$('#').validate({
+	$('#formUpdate').validate({
 		rules: {
 			name: {
 				required: true,

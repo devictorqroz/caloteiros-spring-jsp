@@ -3,9 +3,8 @@
 <%@ include file="/WEB-INF/views/includes/includes.jsp" %>
 <html>
 	<head>
-	    <meta charset="UTF-8">
-		<title>Adiciona Caloteiro</title>
-		<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/caloteiros/new-caloteiro.css">
+		<title>Editar caloteiro</title>
+		<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/caloteiros/update-caloteiro.css">
 		<script src="${pageContext.request.contextPath}/javascript/jquery-3.7.1.min.js" defer></script>
 		<script src="${pageContext.request.contextPath}/javascript/jquery.maskMoney.min.js" defer></script>
 		<script src="${pageContext.request.contextPath}/javascript/jquery.inputmask.min.js" defer></script>
@@ -21,31 +20,31 @@
 			<p>
 				Usuário Logado: ${authenticatedUser.name}
 			</p>
+			<form action="/caloteiros/${caloteiro.id}" method="POST" id="formUpdate">
+				<input type="hidden" name="_method" value="PUT"/>
 
-			<form action="${pageContext.request.contextPath}/caloteiros" method="POST" id="formCreate">
-
-				<triadTag:textField
+				<triadTag:textField 
 					nameField="name" 
 					label="Nome:" 
 					id="labelName"
-					value="${requestNewCaloteiro.name}" />
+					value="${caloteiro.name}" /> 
 				<triadTag:textField 
 					nameField="email" 
 					label="Email:" 
-					id="labelEmail"
-					value="${requestNewCaloteiro.email}" />
+					id="labelEmail" 
+					value="${caloteiro.email}" /> 
 				<triadTag:textField 
 					nameField="debt" 
 					label="Devendo:" 
-					id="labelDebt"
-					value="${requestNewCaloteiro.debt}" />
+					id="labelDebt" 
+					value="${caloteiro.debt}" />
 				<triadTag:textField 
 					nameField="debtDate" 
 					label="Data da Dívida:"
-					id="labelDate"
-					value="${requestNewCaloteiro.debtDate}" />
-					
-				<input type="submit" value="Cadastrar" />
+					id="labelDate" 
+					value="${caloteiro.debtDate}" />
+				
+				<input type="submit" value="Atualizar"/>
 			</form>
 			<a href="/menu" class="menu-link">Retornar ao Menu</a>
 		</main>

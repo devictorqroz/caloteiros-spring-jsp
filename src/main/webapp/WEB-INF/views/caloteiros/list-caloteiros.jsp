@@ -1,17 +1,17 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ include file="includes.jsp" %>
+<%@ include file="/WEB-INF/views/includes/includes.jsp" %>
 <html>
 	<head>
 		<meta charset="UTF-8">
 		<title>Lista de Caloteiros</title>
-		<link rel="stylesheet" type="text/css" href="css/caloteiros/list-caloteiros.css">
-		<script src="javascript/jquery-3.7.1.min.js" defer></script>
-    	<script src="javascript/confirmation.js" defer></script>
+		<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/caloteiros/list-caloteiros.css">
+		<script src="${pageContext.request.contextPath}/javascript/jquery-3.7.1.min.js" defer></script>
+    	<script src="${pageContext.request.contextPath}/javascript/confirmation.js" defer></script>
 	</head>
 	<body>
 		<header>
-			<c:import url="header.jsp" />
+			<c:import url="${pageContext.request.contextPath}/WEB-INF/views/includes/header.jsp" />
 			<h1>Caloteiros</h1>
 		</header>
 		<main>
@@ -61,27 +61,23 @@
 							</c:otherwise>
 						</c:choose>
 						<td>
-							<form action="system" method="post">
-								<input type="hidden" name="logica" value="UpdateCaloteiro" />
-								<input type="hidden" name="id" value="${caloteiro.id}" />
+							<form action="/caloteiros/${caloteiro.id}/edit" method="GET">
 								<input type="submit" id="updateButton" value="Editar" />
 							</form>
 						</td>
 						<td>
-							<form action="system" method="post">
-								<input type="hidden" name="logica" value="DeleteCaloteiro" />
-								<input type="hidden" name="id" value="${caloteiro.id}" />
-								<input type="hidden" name="name" value="${caloteiro.name}" />
+							<form action="/caloteiros/${caloteiro.id}" method="POST">
+								<input type="hidden" name="_method" value="DELETE" />
 								<input type="submit" id="deleteButton" value="Excluir" />
 							</form>
 						</td>
 					</tr>		
 				</c:forEach>
 			</table>
-			<a href="menu" class="menu-link">Retornar ao Menu</a>
+			<a href="/menu" class="menu-link">Retornar ao Menu</a>
 		</main>
 		<footer>
-			<c:import url="footer.jsp" />
+			<c:import url="${pageContext.request.contextPath}/WEB-INF/views/includes/footer.jsp" />
 		</footer>
 	</body>
 </html>
