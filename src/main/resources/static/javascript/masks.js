@@ -22,7 +22,7 @@ $(document).ready(function() {
 		messages: {
 			name: {
 				required: "Esse campo é obrigatório!",
-				maxlength: "O campo nome não pode ter mais que 45 caracteres"
+				maxlength: "O campo nome não pode ter mais que 50 caracteres"
 			},
 			email: {
 				required: "Esse campo é obrigatório!",
@@ -54,7 +54,7 @@ $(document).ready(function() {
 		messages: {
 			name: {
 				required: "Esse campo é obrigatório!",
-				maxlength: "O campo nome não pode ter mais que 45 caracteres"
+				maxlength: "O campo nome não pode ter mais que 50 caracteres"
 			},
 			email: {
 				required: "Esse campo é obrigatório!",
