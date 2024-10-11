@@ -42,8 +42,8 @@
 					nameField="debtDate" 
 					label="Data da Dívida:"
 					id="labelDate" 
-					value="${caloteiro.debtDate}" />
-				
+					value="${fn:formatLocalDate(caloteiro.debtDate, 'dd/MM/yyyy')}" />
+
 				<input type="submit" value="Atualizar"/>
 			</form>
 			<a href="/menu" class="menu-link">Retornar ao Menu</a>
