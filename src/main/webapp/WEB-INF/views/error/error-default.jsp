@@ -5,7 +5,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Erro 404</title>
+    <title>Página de Erro</title>
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/error.css">
 </head>
 <body>
@@ -14,8 +14,8 @@
 		<h2>Caloteiros</h2>
 	</header>
     <main>
-        <h1>404</h1>
-        <p>Não conseguimos encontrar esse link, tente um novo link.</p>
+        <h1>${error}</h1>
+        <p>${message}</p>
         <a href="/menu">Retornar ao Menu</a>
     </main>
     <footer>
