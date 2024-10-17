@@ -17,7 +17,7 @@ public class RequestNewCaloteiro {
     @Email
     private String email;
     @NotNull
-    @DecimalMin("0.0")
+    @DecimalMin("1.0")
     private BigDecimal debt;
     private LocalDate debtDate;
 

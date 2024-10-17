@@ -23,12 +23,8 @@ public class CaloteiroController {
     CaloteiroService caloteiroService;
 
     @GetMapping("/{id}")
-    public Caloteiro findById(@PathVariable Long id) {
-        var caloteiro = caloteiroService.findById(id);
-        if (caloteiro.isEmpty()) {
-            throw new RuntimeException();
-        }
-        return caloteiro.get();
+    public Optional<Caloteiro> findById(@PathVariable Long id) {
+        return caloteiroService.findById(id);
     }
 
     @GetMapping

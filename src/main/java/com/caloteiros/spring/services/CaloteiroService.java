@@ -1,8 +1,10 @@
 package com.caloteiros.spring.services;
 
+import com.caloteiros.spring.exceptions.CaloteiroNotFoundException;
 import com.caloteiros.spring.models.Caloteiro;
 import com.caloteiros.spring.repositories.CaloteiroRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -14,28 +16,47 @@ public class CaloteiroService {
     @Autowired
     CaloteiroRepository caloteiroRepository;
 
-
     public List<Caloteiro> findAll() {
-        return caloteiroRepository.findAll();
+        try {
+            return caloteiroRepository.findAll();
+        } catch (DataAccessException e) {
+            throw e;
+        }
     }
 
     public Optional<Caloteiro> findById(Long id) {
-        return caloteiroRepository.findById(id);
+        try {
+            return Optional.ofNullable(caloteiroRepository.findById(id)
+                    .orElseThrow(() -> new CaloteiroNotFoundException("Caloteiro não encontrado com o ID: " + id)));
+        } catch (DataAccessException e) {
+            throw e;
+        }
     }
 
     public void create(Caloteiro caloteiro) {
-        caloteiroRepository.save(caloteiro);
+        try {
+            caloteiroRepository.save(caloteiro);
+        } catch (DataAccessException e) {
+            throw e;
+        }
     }
 
     public void deleteById(Long id) {
-        caloteiroRepository.deleteById(id);
+        try {
+            Optional<Caloteiro> optionalCaloteiro = caloteiroRepository.findById(id);
+            if (optionalCaloteiro.isEmpty()) {
+                throw new CaloteiroNotFoundException("Caloteiro não encontrado com o ID: " + id);
+            }
+            caloteiroRepository.deleteById(id);
+        } catch (DataAccessException e) {
+            throw e;
+        }
     }
 
     public void update(Long id, Caloteiro updateCaloteiro) {
-        Optional<Caloteiro> optionalCaloteiro = caloteiroRepository.findById(id);
-
-        if (optionalCaloteiro.isPresent()) {
-            Caloteiro caloteiro = optionalCaloteiro.get();
+        try {
+            Caloteiro caloteiro = caloteiroRepository.findById(id)
+                    .orElseThrow(() -> new CaloteiroNotFoundException("Caloteiro não encontrado com o ID: " + id));
 
             caloteiro.setName(updateCaloteiro.getName());
             caloteiro.setEmail(updateCaloteiro.getEmail());
@@ -43,6 +64,8 @@ public class CaloteiroService {
             caloteiro.setDebtDate(updateCaloteiro.getDebtDate());
 
             caloteiroRepository.update(caloteiro);
+        } catch (DataAccessException e) {
+            throw e;
         }
     }
 
