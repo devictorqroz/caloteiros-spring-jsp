@@ -22,11 +22,6 @@ public class CaloteiroController {
     @Autowired
     CaloteiroService caloteiroService;
 
-    @GetMapping("/{id}")
-    public Optional<Caloteiro> findById(@PathVariable Long id) {
-        return caloteiroService.findById(id);
-    }
-
     @GetMapping
     public ModelAndView findAll() {
         List<Caloteiro> caloteiros = caloteiroService.findAll();
