@@ -4,9 +4,9 @@
 <html>
 	<head>
 		<meta charset="UTF-8">
-		<title>Menu Caloteiros</title>
+		<title>Login Caloteiros</title>
 		<link rel="icon" href="${pageContext.request.contextPath}/favicon.ico" type="image/x-icon" />
-		<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/menu.css">
+		<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/login.css">
 	</head>
 	<body>
 		<header>
@@ -14,20 +14,12 @@
 			<h1>Caloteiros</h1>
 		</header>
 		<main>
-			<p>Seja bem vindo ${authenticatedUser.username} ao sistema caloteiros</p>
-			
-			<ol>
-				<li>
-					<a href='<c:url value="/caloteiros/new" />' >
-						Adicionar caloteiro
-					</a>
-				</li>
-				<li>
-					<a href='<c:url value="/caloteiros" />' >
-						Listar caloteiros
-					</a>
-				</li>
-			</ol>
+			<form action="${pageContext.request.contextPath}/auth/login" method="POST" >
+				Login: <input type="text" name="username" value="" />
+				Senha: <input type="password" name="password" value="" />
+				<input type="submit" id="login" value="Login" />
+			</form>
+			<p>${message}</p>
 		</main>
 		<footer>
 			<c:import url="${pageContext.request.contextPath}/WEB-INF/views/includes/footer.jsp" />

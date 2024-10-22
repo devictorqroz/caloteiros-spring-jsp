@@ -1,6 +1,5 @@
-package com.caloteiros.spring.dto;
+package com.caloteiros.spring.models.caloteiro;
 
-import com.caloteiros.spring.models.Caloteiro;
 import jakarta.validation.constraints.DecimalMin;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
@@ -9,7 +8,7 @@ import jakarta.validation.constraints.NotNull;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
-public class RequestNewCaloteiro {
+public class RequestNewCaloteiroDTO {
 
     @NotBlank
     private String name;

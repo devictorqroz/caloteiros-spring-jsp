@@ -5,6 +5,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Caloteiro atualizado</title>
+    <link rel="icon" href="${pageContext.request.contextPath}/favicon.ico" type="image/x-icon" />
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/action-completed.css">
 </head>
 <body>

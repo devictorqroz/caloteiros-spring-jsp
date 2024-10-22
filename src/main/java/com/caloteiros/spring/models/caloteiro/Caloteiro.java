@@ -1,6 +1,4 @@
-package com.caloteiros.spring.models;
-
-import jakarta.validation.constraints.*;
+package com.caloteiros.spring.models.caloteiro;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
@@ -8,7 +6,6 @@ import java.time.LocalDate;
 public class Caloteiro {
 
     private Long id;
-
     private String name;
     private String email;
     private BigDecimal debt;
@@ -17,10 +14,6 @@ public class Caloteiro {
 
     public Long getId() {
         return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 
     public String getName() {

@@ -1,6 +1,7 @@
 package com.caloteiros.spring.repositories;
 
-import com.caloteiros.spring.models.Caloteiro;
+import com.caloteiros.spring.models.caloteiro.Caloteiro;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.simple.JdbcClient;
 import org.springframework.stereotype.Repository;
 
@@ -10,11 +11,8 @@ import java.util.Optional;
 @Repository
 public class CaloteiroRepository {
 
-    private final JdbcClient jdbcClient;
-
-    public CaloteiroRepository(JdbcClient jdbcClient) {
-        this.jdbcClient = jdbcClient;
-    }
+    @Autowired
+    private JdbcClient jdbcClient;
 
     public void save(Caloteiro caloteiro) {
         jdbcClient.sql("""

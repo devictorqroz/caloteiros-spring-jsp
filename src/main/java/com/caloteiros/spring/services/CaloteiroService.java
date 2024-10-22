@@ -1,7 +1,7 @@
 package com.caloteiros.spring.services;
 
 import com.caloteiros.spring.exceptions.CaloteiroNotFoundException;
-import com.caloteiros.spring.models.Caloteiro;
+import com.caloteiros.spring.models.caloteiro.Caloteiro;
 import com.caloteiros.spring.repositories.CaloteiroRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;

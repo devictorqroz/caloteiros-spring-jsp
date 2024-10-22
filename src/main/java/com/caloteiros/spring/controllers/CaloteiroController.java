@@ -1,7 +1,7 @@
 package com.caloteiros.spring.controllers;
 
-import com.caloteiros.spring.dto.RequestNewCaloteiro;
-import com.caloteiros.spring.models.Caloteiro;
+import com.caloteiros.spring.models.caloteiro.RequestNewCaloteiroDTO;
+import com.caloteiros.spring.models.caloteiro.Caloteiro;
 import com.caloteiros.spring.services.CaloteiroService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,13 +31,13 @@ public class CaloteiroController {
     }
 
     @GetMapping("/new")
-    public ModelAndView newCaloteiroForm(RequestNewCaloteiro request) {
+    public ModelAndView newCaloteiroForm(RequestNewCaloteiroDTO request) {
         ModelAndView model = new ModelAndView("caloteiros/new-caloteiro");
         return model;
     }
 
     @PostMapping
-    public ModelAndView createCaloteiroForm(@Valid RequestNewCaloteiro request, BindingResult bindingResult) {
+    public ModelAndView createCaloteiroForm(@Valid RequestNewCaloteiroDTO request, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
             ModelAndView model = new ModelAndView("caloteiros/new-caloteiro");
             return model;

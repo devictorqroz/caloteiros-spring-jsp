@@ -5,6 +5,7 @@
 	<head>
 	    <meta charset="UTF-8">
 		<title>Adiciona Caloteiro</title>
+		<link rel="icon" href="${pageContext.request.contextPath}/favicon.ico" type="image/x-icon" />
 		<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/caloteiros/new-caloteiro.css">
 		<script src="${pageContext.request.contextPath}/javascript/jquery-3.7.1.min.js" defer></script>
 		<script src="${pageContext.request.contextPath}/javascript/jquery.maskMoney.min.js" defer></script>
@@ -19,7 +20,7 @@
 		</header>
 		<main>
 			<p>
-				Usuário Logado: ${authenticatedUser.name}
+				Usuário Logado: ${authenticatedUser.username}
 			</p>
 
 			<form action="${pageContext.request.contextPath}/caloteiros" method="POST" id="formCreate">

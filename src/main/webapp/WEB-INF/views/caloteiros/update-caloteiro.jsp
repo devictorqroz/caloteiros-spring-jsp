@@ -4,6 +4,7 @@
 <html>
 	<head>
 		<title>Editar caloteiro</title>
+		<link rel="icon" href="${pageContext.request.contextPath}/favicon.ico" type="image/x-icon" />
 		<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/caloteiros/update-caloteiro.css">
 		<script src="${pageContext.request.contextPath}/javascript/jquery-3.7.1.min.js" defer></script>
 		<script src="${pageContext.request.contextPath}/javascript/jquery.maskMoney.min.js" defer></script>
@@ -18,7 +19,7 @@
 		</header>
 		<main>
 			<p>
-				Usuário Logado: ${authenticatedUser.name}
+				Usuário Logado: ${authenticatedUser.username}
 			</p>
 			<form action="/caloteiros/${caloteiro.id}" method="POST" id="formUpdate">
 				<input type="hidden" name="_method" value="PUT"/>

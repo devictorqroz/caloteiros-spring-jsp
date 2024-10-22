@@ -5,6 +5,7 @@
 	<head>
 		<meta charset="UTF-8">
 		<title>Lista de Caloteiros</title>
+		<link rel="icon" href="${pageContext.request.contextPath}/favicon.ico" type="image/x-icon" />
 		<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/caloteiros/list-caloteiros.css">
 		<script src="${pageContext.request.contextPath}/javascript/jquery-3.7.1.min.js" defer></script>
     	<script src="${pageContext.request.contextPath}/javascript/confirmation.js" defer></script>
@@ -16,7 +17,7 @@
 		</header>
 		<main>
 			<p>
-				Usuário Logado: ${authenticatedUser.name}
+				Usuário Logado: ${authenticatedUser.username}
 			</p>
 			<p>
 				Lista de Caloteiros: 
