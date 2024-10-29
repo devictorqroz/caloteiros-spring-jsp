@@ -28,11 +28,6 @@ main {
     text-align: center;
 }
 
-main p {
-    font-size: 1.0em;
-    margin: 20px 0;
-}
-
 form {
     margin: 0 auto;
     width: 300px;
@@ -45,10 +40,7 @@ form label {
 }
 
 form input[type="text"],
-form input[type="password"],
-form input[type="email"],
-form input[type="number"],
-form input[type="date"] {
+form input[type="password"] {
     width: calc(100% - 20px);
     margin-bottom: 10px;
     padding: 10px;
@@ -63,7 +55,7 @@ form input[type="submit"] {
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    margin-top: 15px;
+     margin-top: 15px;
 }
 
 form input[type="submit"]:hover {
@@ -82,22 +74,6 @@ main a.menu-link {
 
 main a.menu-link:hover {
     background-color: #555;
-}
-
-.links-below-form {
-    margin-top: 15px;
-    text-align: center;
-}
-
-main a#link-new-user {
-    display: block;
-    margin-top: 10px;
-    color: #333;
-    text-decoration: none;
-}
-
-main a#link-new-user:hover {
-    color: #555;
 }
 
 footer {

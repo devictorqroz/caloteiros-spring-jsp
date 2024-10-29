@@ -7,27 +7,31 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 
 @Controller()
 @RequestMapping("/auth")
 public class AuthController {
 
     @Autowired
-    AuthService service;
+    AuthService authService;
 
-
-    @GetMapping("/loginForm")
-    public String loginForm() {
-        return "login-form";
+    @GetMapping("/login")
+    public ModelAndView loginForm() {
+        ModelAndView mv = new ModelAndView("login-form");
+        return mv;
     }
 
-    @PostMapping(value = "/login", consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
-    public String login(@ModelAttribute User user, HttpSession session) {
-        if(service.userExists(user)) {
+    @PostMapping("/login")
+    public ModelAndView login(@ModelAttribute User user, HttpSession session) {
+        ModelAndView mv = new ModelAndView();
+        if(authService.userExists(user)) {
            session.setAttribute("authenticatedUser", user);
-           return "menu";
+           mv.setViewName("menu");
+            return mv;
         }
-        return "redirect:loginForm";
+        mv.setViewName("login-form");
+        return mv;
     }
 
     @GetMapping("/logout")

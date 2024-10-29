@@ -1,16 +1,17 @@
 package com.caloteiros.spring.models.user;
 
+import jakarta.validation.constraints.Size;
+
 public class User {
 
     private Long id;
+    @Size(min = 3, max = 20, message = "Usuário deve conter entre 3 a 20 caracteres.")
     private String username;
     private String password;
-    private UserRole role;
 
-    public User(String username, String password, UserRole role) {
+    public User(String username, String password) {
         this.username = username;
         this.password = password;
-        this.role = role;
     }
 
     public void setId(Long id) {
@@ -21,16 +22,8 @@ public class User {
         return username;
     }
 
-    public void setRole(UserRole role) {
-        this.role = role;
-    }
-
     public Long getId() {
         return id;
-    }
-
-    public UserRole getRole() {
-        return role;
     }
 
     public String getPassword() {
@@ -43,7 +36,6 @@ public class User {
                 "id=" + id +
                 ", username='" + username + '\'' +
                 ", password='" + password + '\'' +
-                ", role=" + role +
                 '}';
     }
 }

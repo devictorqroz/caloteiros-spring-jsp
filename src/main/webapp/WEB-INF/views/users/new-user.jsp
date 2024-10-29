@@ -4,9 +4,9 @@
 <html>
 	<head>
 	    <meta charset="UTF-8">
-		<title>Login</title>
+		<title>Adiciona Usuário</title>
 		<link rel="icon" href="${pageContext.request.contextPath}/favicon.ico" type="image/x-icon" />
-		<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/login.css">
+		<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/users/new-user.css">
 		<script src="${pageContext.request.contextPath}/javascript/jquery-3.7.1.min.js" defer></script>
 		<script src="${pageContext.request.contextPath}/javascript/jquery.maskMoney.min.js" defer></script>
 		<script src="${pageContext.request.contextPath}/javascript/jquery.inputmask.min.js" defer></script>
@@ -19,25 +19,22 @@
 			<h1>Caloteiros</h1>
 		</header>
 		<main>
-			<form action="${pageContext.request.contextPath}/auth/login" method="POST" id="formLogin">
+			<form action="${pageContext.request.contextPath}/users/register" method="POST" id="formCreateUser">
 
 				<triadTag:textField
 					nameField="username"
 					label="Username:"
 					id="labelUsername"
-					value="" />
+					value="${requestNewUser.username}" />
 				<triadTag:password
 					passwordField="password"
 					label="Password:"
 					id="labelPassword"
-					value="" />
+					value="${requestNewUser.password}" />
 
-				<input type="submit" value="Login" />
+				<input type="submit" value="Registrat" />
 			</form>
-			<div class="links-below-form">
-                <a href="/users/new" id="link-new-user">Não tem uma conta? Cadastre-se</a>
-                <a href="/menu" class="menu-link">Retornar ao Menu</a>
-            </div>
+			<a href="/menu" class="menu-link">Retornar ao Menu</a>
 		</main>
 		<footer>
 			<c:import url="${pageContext.request.contextPath}/WEB-INF/views/includes/footer.jsp" />

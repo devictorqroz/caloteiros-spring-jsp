@@ -1,7 +1,6 @@
 package com.caloteiros.spring.repositories;
 
 import com.caloteiros.spring.models.user.User;
-import com.caloteiros.spring.models.user.UserRole;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.simple.JdbcClient;
 import org.springframework.stereotype.Repository;
@@ -17,12 +16,11 @@ public class UserRepository {
 
     public void save(User user) {
         jdbcClient.sql("""
-                INSERT INTO user (username, password, role) 
-                VALUES (:username, :password, :role)
+                INSERT INTO user (username, password) 
+                VALUES (:username, :password)
             """)
                 .param("username", user.getUsername())
                 .param("password", user.getPassword())
-                .param("role", user.getRole())
                 .update();
     }
 
@@ -34,16 +32,8 @@ public class UserRepository {
                     String userId = rs.getString("id");
                     String usernameFromDb = rs.getString("username");
                     String passwordFromDb = rs.getString("password");
-                    String roleFromDb = rs.getString("role");
 
-                    UserRole role;
-                    try {
-                        role = UserRole.valueOf(roleFromDb.toUpperCase());
-                    } catch (IllegalArgumentException e) {
-                        throw new SQLException("Role no banco de dados inválida: " + roleFromDb);
-                    }
-
-                    User user = new User(usernameFromDb, passwordFromDb, role);
+                    User user = new User(usernameFromDb, passwordFromDb);
                     user.setId(Long.valueOf(userId));
 
                     return user;
@@ -68,13 +58,12 @@ public class UserRepository {
         jdbcClient
                 .sql("""
                 UPDATE user 
-                SET username = :username, password = :password, role = :role 
+                SET username = :username, password = :password
                 WHERE id = :id;
             """)
                 .param("id", user.getId())
                 .param("username", user.getUsername())
                 .param("password", user.getPassword())
-                .param("role", user.getRole())
                 .update();
     }
 
