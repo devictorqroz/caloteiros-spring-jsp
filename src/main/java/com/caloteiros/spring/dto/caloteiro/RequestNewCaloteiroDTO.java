@@ -1,5 +1,6 @@
-package com.caloteiros.spring.models.caloteiro;
+package com.caloteiros.spring.dto.caloteiro;
 
+import com.caloteiros.spring.models.caloteiro.Caloteiro;
 import jakarta.validation.constraints.DecimalMin;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;

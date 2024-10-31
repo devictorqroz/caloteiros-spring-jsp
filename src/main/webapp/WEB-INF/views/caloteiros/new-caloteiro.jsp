@@ -20,10 +20,10 @@
 		</header>
 		<main>
 			<p>
-				Usuário Logado: ${authenticatedUser.username}
+				Usuário Logado: ${currentUser.username}
 			</p>
 
-			<form action="${pageContext.request.contextPath}/caloteiros" method="POST" id="formCreate">
+			<form action="${pageContext.request.contextPath}/caloteiros" method="POST" id="formNewCaloteiro">
 
 				<triadTag:textField
 					nameField="name" 

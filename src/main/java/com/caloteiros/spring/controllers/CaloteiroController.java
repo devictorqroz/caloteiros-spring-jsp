@@ -1,8 +1,8 @@
 package com.caloteiros.spring.controllers;
 
-import com.caloteiros.spring.models.caloteiro.RequestNewCaloteiroDTO;
+import com.caloteiros.spring.dto.caloteiro.RequestNewCaloteiroDTO;
 import com.caloteiros.spring.models.caloteiro.Caloteiro;
-import com.caloteiros.spring.services.CaloteiroService;
+import com.caloteiros.spring.services.caloteiro.CaloteiroService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

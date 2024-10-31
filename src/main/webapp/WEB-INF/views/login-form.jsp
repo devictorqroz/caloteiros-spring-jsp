@@ -19,7 +19,7 @@
 			<h1>Caloteiros</h1>
 		</header>
 		<main>
-			<form action="${pageContext.request.contextPath}/auth/login" method="POST" id="formLogin">
+			<form action="${pageContext.request.contextPath}/login" method="POST" id="formLogin">
 
 				<triadTag:textField
 					nameField="username"
@@ -36,7 +36,6 @@
 			</form>
 			<div class="links-below-form">
                 <a href="/users/new" id="link-new-user">Não tem uma conta? Cadastre-se</a>
-                <a href="/menu" class="menu-link">Retornar ao Menu</a>
             </div>
 		</main>
 		<footer>

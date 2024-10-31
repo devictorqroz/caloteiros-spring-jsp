@@ -14,7 +14,7 @@
 			<h1>Caloteiros</h1>
 		</header>
 		<main>
-			<p>Seja bem vindo ${authenticatedUser.username} ao sistema caloteiros</p>
+			<p>Seja bem vindo ${sessionScope.currentUser.username} ao sistema caloteiros</p>
 			
 			<ol>
 				<li>
@@ -27,6 +27,16 @@
 						Listar caloteiros
 					</a>
 				</li>
+				<li>
+                    <a href='<c:url value="/users/new" />' >
+                        Criar novo usuário
+                    </a>
+                </li>
+                <li>
+                    <a href='<c:url value="/logout" />' >
+                        Logout
+                    </a>
+                </li>
 			</ol>
 		</main>
 		<footer>

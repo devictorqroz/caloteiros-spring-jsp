@@ -19,9 +19,9 @@
 		</header>
 		<main>
 			<p>
-				Usuário Logado: ${authenticatedUser.username}
+				Usuário Logado: ${currentUser.username}
 			</p>
-			<form action="/caloteiros/${caloteiro.id}" method="POST" id="formUpdate">
+			<form action="/caloteiros/${caloteiro.id}" method="POST" id="formUpdateCaloteiro">
 				<input type="hidden" name="_method" value="PUT"/>
 
 				<triadTag:textField 

@@ -19,7 +19,7 @@
 			<h1>Caloteiros</h1>
 		</header>
 		<main>
-			<form action="${pageContext.request.contextPath}/users/register" method="POST" id="formCreateUser">
+			<form action="${pageContext.request.contextPath}/users/register" method="POST" id="formNewUser">
 
 				<triadTag:textField
 					nameField="username"

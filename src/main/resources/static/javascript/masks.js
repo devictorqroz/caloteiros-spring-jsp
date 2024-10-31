@@ -4,7 +4,7 @@ $(document).ready(function() {
 	$('#labelDate').inputmask("99/99/9999");
 	
 	
-	$('#formCreate').validate({
+	$('#formNewCaloteiro').validate({
 		rules: {
 			name: {
 				required: true,
@@ -36,7 +36,7 @@ $(document).ready(function() {
 	});
 	
 	
-	$('#formUpdate').validate({
+	$('#formUpdateCaloteiro').validate({
 		rules: {
 			name: {
 				required: true,
@@ -66,5 +66,53 @@ $(document).ready(function() {
             }
 		}
 	});
+
+	$('#formNewUser').validate({
+        rules: {
+            username: {
+                required: true,
+                minlength: 3,
+                maxlength: 30
+            },
+            password: {
+                required: true,
+                minlength: 6
+            }
+        },
+        messages: {
+            username: {
+                required: "Esse campo é obrigatório!",
+                minlength: "O campo nome não pode ter menos que 3 caracteres"
+            },
+            password: {
+                required: "Esse campo é obrigatório!",
+                minlength: "O campo nome não pode ter menos que 6 caracteres"
+            }
+        }
+    });
+
+	$('#formLogin').validate({
+        rules: {
+            username: {
+                required: true,
+                minlength: 3,
+                maxlength: 30
+            },
+            password: {
+                required: true,
+                minlength: 6
+            }
+        },
+        messages: {
+            username: {
+                required: "Esse campo é obrigatório!",
+                minlength: "O campo nome não pode ter menos que 3 caracteres"
+            },
+            password: {
+                required: "Esse campo é obrigatório!",
+                minlength: "O campo nome não pode ter menos que 6 caracteres"
+            }
+        }
+    });
 });
 

@@ -17,7 +17,7 @@
 		</header>
 		<main>
 			<p>
-				Usuário Logado: ${authenticatedUser.username}
+				Usuário Logado: ${currentUser.username}
 			</p>
 			<p>
 				Lista de Caloteiros: 

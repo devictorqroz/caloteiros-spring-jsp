@@ -5,13 +5,14 @@ import jakarta.validation.constraints.Size;
 public class User {
 
     private Long id;
-    @Size(min = 3, max = 20, message = "Usuário deve conter entre 3 a 20 caracteres.")
     private String username;
     private String password;
+    private String salt;
 
-    public User(String username, String password) {
+    public User(String username, String password, String salt) {
         this.username = username;
         this.password = password;
+        this.salt = salt;
     }
 
     public void setId(Long id) {
@@ -30,12 +31,23 @@ public class User {
         return password;
     }
 
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public String getSalt() {
+        return salt;
+    }
+
+    public void setSalt(String salt) {
+        this.salt = salt;
+    }
+
     @Override
     public String toString() {
         return "User{" +
                 "id=" + id +
                 ", username='" + username + '\'' +
-                ", password='" + password + '\'' +
                 '}';
     }
 }

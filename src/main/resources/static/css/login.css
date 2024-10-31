@@ -70,20 +70,6 @@ form input[type="submit"]:hover {
     background-color: #555;
 }
 
-main a.menu-link {
-    display: inline-block;
-    margin-top: 20px;
-    padding: 10px 20px;
-    background-color: #333;
-    color: #fff;
-    text-decoration: none;
-    border-radius: 5px;
-}
-
-main a.menu-link:hover {
-    background-color: #555;
-}
-
 .links-below-form {
     margin-top: 15px;
     text-align: center;

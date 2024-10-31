@@ -5,8 +5,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.simple.JdbcClient;
 import org.springframework.stereotype.Repository;
 
-import java.sql.SQLException;
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public class UserRepository {
@@ -16,28 +16,13 @@ public class UserRepository {
 
     public void save(User user) {
         jdbcClient.sql("""
-                INSERT INTO user (username, password) 
-                VALUES (:username, :password)
+                INSERT INTO user (username, password, salt) 
+                VALUES (:username, :password, :salt)
             """)
                 .param("username", user.getUsername())
                 .param("password", user.getPassword())
+                .param("salt", user.getSalt())
                 .update();
-    }
-
-    public User findByUsername(String username) {
-        return jdbcClient
-                .sql("SELECT * FROM user WHERE username = :username")
-                .param("username", username)
-                .query(rs -> {
-                    String userId = rs.getString("id");
-                    String usernameFromDb = rs.getString("username");
-                    String passwordFromDb = rs.getString("password");
-
-                    User user = new User(usernameFromDb, passwordFromDb);
-                    user.setId(Long.valueOf(userId));
-
-                    return user;
-                });
     }
 
     public List<User> findAll() {
@@ -58,25 +43,25 @@ public class UserRepository {
         jdbcClient
                 .sql("""
                 UPDATE user 
-                SET username = :username, password = :password
+                SET username = :username, password = :password, salt = :salt
                 WHERE id = :id;
             """)
                 .param("id", user.getId())
                 .param("username", user.getUsername())
                 .param("password", user.getPassword())
+                .param("salt", user.getSalt())
                 .update();
     }
 
-    public boolean userExists(User user) {
+    public Optional<User> findUserByUsername(String username) {
         return jdbcClient
                 .sql("""
-                    SELECT 1
+                    SELECT id, username, password, salt
                     FROM user
                     WHERE username = :username;
                 """)
-                .param("username", user.getUsername())
-                .query(Boolean.class)
-                .optional()
-                .orElse(false);
+                .param("username", username)
+                .query(User.class)
+                .optional();
     }
 }

@@ -1,4 +1,4 @@
-package com.caloteiros.spring.services;
+package com.caloteiros.spring.services.caloteiro;
 
 import com.caloteiros.spring.exceptions.CaloteiroNotFoundException;
 import com.caloteiros.spring.models.caloteiro.Caloteiro;
