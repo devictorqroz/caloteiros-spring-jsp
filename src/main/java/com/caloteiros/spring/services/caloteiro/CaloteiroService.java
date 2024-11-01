@@ -16,18 +16,18 @@ public class CaloteiroService {
     @Autowired
     CaloteiroRepository caloteiroRepository;
 
-    public List<Caloteiro> findAll() {
+    public List<Caloteiro> findAllByUserId(Long userId) {
         try {
-            return caloteiroRepository.findAll();
+            return caloteiroRepository.findAllByUserId(userId);
         } catch (DataAccessException e) {
             throw e;
         }
     }
 
-    public Optional<Caloteiro> findById(Long id) {
+    public Optional<Caloteiro> findById(Long caloteiroId, Long userId) {
         try {
-            return Optional.ofNullable(caloteiroRepository.findById(id)
-                    .orElseThrow(() -> new CaloteiroNotFoundException("Caloteiro não encontrado com o ID: " + id)));
+            return Optional.ofNullable(caloteiroRepository.findById(caloteiroId, userId)
+                    .orElseThrow(() -> new CaloteiroNotFoundException("Caloteiro não encontrado com o ID: " + caloteiroId)));
         } catch (DataAccessException e) {
             throw e;
         }
@@ -41,32 +41,38 @@ public class CaloteiroService {
         }
     }
 
-    public void deleteById(Long id) {
+    public void deleteById(Long caloteiroId, Long userId) {
         try {
-            Optional<Caloteiro> optionalCaloteiro = caloteiroRepository.findById(id);
+            Optional<Caloteiro> optionalCaloteiro = caloteiroRepository.findById(caloteiroId, userId);
             if (optionalCaloteiro.isEmpty()) {
-                throw new CaloteiroNotFoundException("Caloteiro não encontrado com o ID: " + id);
+                throw new CaloteiroNotFoundException("Caloteiro não encontrado com o ID: " + caloteiroId);
             }
-            caloteiroRepository.deleteById(id);
+            caloteiroRepository.deleteById(caloteiroId, userId);
         } catch (DataAccessException e) {
             throw e;
         }
     }
 
     public void update(Long id, Caloteiro updateCaloteiro) {
+
+        Caloteiro caloteiro = caloteiroRepository.findById(id, updateCaloteiro.getUserId())
+                .orElseThrow(() -> new CaloteiroNotFoundException("Caloteiro não encontrado com o ID: " + id));
+
+        updateFields(caloteiro, updateCaloteiro);
+
         try {
-            Caloteiro caloteiro = caloteiroRepository.findById(id)
-                    .orElseThrow(() -> new CaloteiroNotFoundException("Caloteiro não encontrado com o ID: " + id));
-
-            caloteiro.setName(updateCaloteiro.getName());
-            caloteiro.setEmail(updateCaloteiro.getEmail());
-            caloteiro.setDebt(updateCaloteiro.getDebt());
-            caloteiro.setDebtDate(updateCaloteiro.getDebtDate());
-
             caloteiroRepository.update(caloteiro);
         } catch (DataAccessException e) {
             throw e;
         }
     }
 
+
+    private void updateFields(Caloteiro caloteiro, Caloteiro updateCaloteiro) {
+        caloteiro.setName(updateCaloteiro.getName());
+        caloteiro.setEmail(updateCaloteiro.getEmail());
+        caloteiro.setDebt(updateCaloteiro.getDebt());
+        caloteiro.setDebtDate(updateCaloteiro.getDebtDate());
+        caloteiro.setUserId(updateCaloteiro.getUserId());
+    }
 }

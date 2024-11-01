@@ -16,35 +16,39 @@ public class CaloteiroRepository {
 
     public void save(Caloteiro caloteiro) {
         jdbcClient.sql("""
-                INSERT INTO caloteiro (name, email, debt, debtDate) 
-                VALUES (:name, :email, :debt, :debtDate)
+                INSERT INTO caloteiro (name, email, debt, debtDate, user_id) 
+                VALUES (:name, :email, :debt, :debtDate, :userId)
             """)
             .param("name", caloteiro.getName())
             .param("email", caloteiro.getEmail())
             .param("debt", caloteiro.getDebt())
             .param("debtDate", caloteiro.getDebtDate())
+            .param("userId", caloteiro.getUserId())
             .update();
     }
 
-    public Optional<Caloteiro> findById(Long id) {
+    public Optional<Caloteiro> findById(Long caloteiroId, Long userId) {
         return jdbcClient
-            .sql("SELECT * FROM caloteiro WHERE id = :id")
-            .param("id", id)
+            .sql("SELECT * FROM caloteiro WHERE id = :caloteiroId AND user_id = :userId;")
+            .param("caloteiroId", caloteiroId)
+            .param("userId", userId)
             .query(Caloteiro.class)
             .optional();
     }
 
-    public List<Caloteiro> findAll() {
+    public List<Caloteiro> findAllByUserId(Long userId) {
         return jdbcClient
-            .sql("SELECT * FROM caloteiro")
+            .sql("SELECT * FROM caloteiro WHERE user_id = :userId")
+            .param("userId", userId)
             .query(Caloteiro.class)
             .list();
     }
 
-    public void deleteById(Long id) {
+    public void deleteById(Long caloteiroId, Long userId) {
         jdbcClient
-                .sql("DELETE FROM caloteiro WHERE id = :id")
-                .param("id", id)
+                .sql("DELETE FROM caloteiro WHERE id = :caloteiroId AND user_id = :userId")
+                .param("caloteiroId", caloteiroId)
+                .param("userId", userId)
                 .update();
     }
 

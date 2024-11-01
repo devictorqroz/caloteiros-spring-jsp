@@ -10,7 +10,7 @@ public class Caloteiro {
     private String email;
     private BigDecimal debt;
     private LocalDate debtDate;
-
+    private Long userId;
 
     public Long getId() {
         return id;
@@ -48,6 +48,14 @@ public class Caloteiro {
         this.debtDate = debtDate;
     }
 
+    public Long getUserId() {
+        return userId;
+    }
+
+    public void setUserId(Long userId) {
+        this.userId = userId;
+    }
+
     @Override
     public String toString() {
         return "Caloteiro{" +
@@ -56,6 +64,7 @@ public class Caloteiro {
                 ", email='" + email + '\'' +
                 ", debt=" + debt +
                 ", debtDate=" + debtDate +
+                ", userId=" + userId +
                 '}';
     }
 }
